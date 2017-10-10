@@ -1,0 +1,23 @@
+C51 COMPILER V9.01   LCD1602DISPLAY                                                        10/10/2017 16:45:05 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LCD1602DISPLAY
+OBJECT MODULE PLACED IN LCD1602display.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE LCD1602display.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

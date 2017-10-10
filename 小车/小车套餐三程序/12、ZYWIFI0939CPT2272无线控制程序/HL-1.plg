@@ -1,0 +1,63 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\9、ZYWIFI0939C-WIFI控制智能机器人配套案列程序源码(20150802)\改\再改\9、ZYWIFI0939CPT2272无线控制程序\ZYWIFI0939CPT2272无线控制程序.uvproj
+Project File Date:  11/12/2013
+
+<h2>Output:</h2>
+Build target '目标 1'
+compiling main.c...
+linking...
+Program Size: data=9.0 xdata=0 code=165
+creating hex file from "ZYWIFI0939CPT2272无线控制程序"...
+"ZYWIFI0939CPT2272无线控制程序" - 0 Error(s), 0 Warning(s).
+Build target '目标 1'
+compiling main.c...
+MAIN.C(40): error C231: 'EN1': redefinition
+MAIN.C(41): error C231: 'EN2': redefinition
+MAIN.C(43): error C231: 'IN1': redefinition
+MAIN.C(44): error C231: 'IN2': redefinition
+MAIN.C(45): error C231: 'IN3': redefinition
+MAIN.C(46): error C231: 'IN4': redefinition
+MAIN.C(101): error C237: 'stop': function already has a body
+目标未创建
+Build target '目标 1'
+compiling main.c...
+MAIN.C(40): error C231: 'EN1': redefinition
+MAIN.C(41): error C231: 'EN2': redefinition
+MAIN.C(43): error C231: 'IN1': redefinition
+MAIN.C(44): error C231: 'IN2': redefinition
+MAIN.C(45): error C231: 'IN3': redefinition
+MAIN.C(46): error C231: 'IN4': redefinition
+MAIN.C(101): error C237: 'stop': function already has a body
+目标未创建
+Build target '目标 1'
+compiling main.c...
+MAIN.C(94): error C237: 'stop': function already has a body
+目标未创建
+Build target '目标 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?MAIN
+Program Size: data=15.2 xdata=0 code=440
+creating hex file from "ZYWIFI0939CPT2272无线控制程序"...
+"ZYWIFI0939CPT2272无线控制程序" - 0 Error(s), 1 Warning(s).
+Build target '目标 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?MAIN
+Program Size: data=15.2 xdata=0 code=440
+creating hex file from "ZYWIFI0939CPT2272无线控制程序"...
+"ZYWIFI0939CPT2272无线控制程序" - 0 Error(s), 1 Warning(s).
+Build target '目标 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?MAIN
+Program Size: data=15.2 xdata=0 code=440
+creating hex file from "ZYWIFI0939CPT2272无线控制程序"...
+"ZYWIFI0939CPT2272无线控制程序" - 0 Error(s), 1 Warning(s).

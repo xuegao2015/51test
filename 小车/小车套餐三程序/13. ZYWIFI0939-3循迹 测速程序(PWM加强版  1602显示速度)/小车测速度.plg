@@ -1,0 +1,21 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\ZYWIFI094智能小车最终光盘资料20160708\9.ZYWIFI094智能小车例程代码\小车套餐三程序\14. ZYWIFI0939-3循迹 测速程序(PWM加强版  1602显示速度)\小车测速度.uvproj
+Project File Date:  05/27/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling 小车测速度.C...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAYLISTCHAR?小车瞋速度
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?小车瞋速度
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BACKRUN?小车瞋速度
+Program Size: data=50.4 xdata=0 code=1568
+creating hex file from "小车测速度"...
+"小车测速度" - 0 Error(s), 3 Warning(s).

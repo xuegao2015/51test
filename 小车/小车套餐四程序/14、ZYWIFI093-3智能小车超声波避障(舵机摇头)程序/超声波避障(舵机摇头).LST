@@ -1,0 +1,261 @@
+C51 COMPILER V9.01   超蒧波盻障_舵籣摇头_                                                  07/13/2016 11:01:09 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 超蒧波盻障_舵籣摇头_
+OBJECT MODULE PLACED IN 超声波避障(舵机摇头).OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 超声波避障(舵机摇头).c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*****************ZYDJ-CSB09A舵机控制*****************
+   2          *  平台：ZYDJ-CSB09A舵机控制 + Keil U4 + STC89C52
+   3          *  程序名称：超声波避障程序+舵机转向摇头
+   4          *  公司：湖南智宇科教设备有限公司
+   5          *  淘宝：http://tmmcu1688.taobao.com       
+   6          *  网站：www.china-zhiyu.com    
+   7          *  编写：智宇公司研发一部
+   8          *  日期：2015-1-15
+   9          *  交流:智能车QQ:1018973181 
+  10          *  晶振:11.0592MHZ
+  11          *  售后技术说明：免费开源，不支持客户自己修改程序分析与改正，可以提供我公司程序说明
+  12          *  视频教程：本小车配套学习C语言详细视频教程，资料统一网盘下载
+  13          ******************************************************************/
+  14          
+  15          /* 程序名：左右扫描,哪一边没有障碍往哪边走,两边有退后转大转断续走
+  16                    angle=12  舵机 居中    angle=4  刚好右边   angle=20  刚好左边
+  17          
+  18                    调试舵机剧中的方法：插入电源，主板工作时，舵机刚好是居中的
+  19                    ，此时，将舵机底板装入白色舵机齿轮上面，用螺丝搞紧就可以了。
+  20          
+  21          /* 晶振：11.00592 MHz CPU型号：STC89C52RC */
+  22          /*****************************************************************/ 
+  23          #include<AT89x51.H>
+  24          #include <intrins.h>
+  25          #include "LCD1602display.h"
+  26          #include<HJ-4WD_PWM.H>            //包含HL-1蓝牙智能小车驱动IO口定义等函数
+  27          
+  28          #define uchar unsigned char
+  29          #define uint  unsigned int
+  30          unsigned char disbuff[6]={0};//用于分别放距离的值       
+  31          unsigned char code Range[] ="==Range Finder==";//LCD1602显示格式
+  32          unsigned char code ASCII[15] ="0123456789CM S";
+  33          
+  34          unsigned char code ASCIIR[13] = "distance:";
+  35          unsigned char code ASCIIL[13] = "LMspeed:";
+  36          unsigned char code table[]="Distance:001.0cm";
+  37          unsigned char code table1[]="!!! Out of range";
+  38          
+  39          sbit TRIG=P2^1;
+  40          sbit ECHO=P2^0;
+  41          
+  42          sbit pwm=P2^6;//PWM信号输出口
+  43          
+  44          uchar n,count,angle,left,right;//距离标志位，0.5ms次数，角度标识
+  45          
+  46          uchar Left_Distance;
+  47          uchar Right_Distance;
+  48          uchar Front_Distance;
+  49          
+  50          //float S;//距离变量
+  51          unsigned int S=0 ;
+  52          
+  53          void DelayUs2x(uchar t)
+  54          {   
+  55   1              while(--t);
+C51 COMPILER V9.01   超蒧波盻障_舵籣摇头_                                                  07/13/2016 11:01:09 PAGE 2   
+
+  56   1      }
+  57          void DelayMs(uchar t)
+  58          {
+  59   1              while(t--)
+  60   1              {
+  61   2                  //大致延时1mS       
+  62   2                      DelayUs2x(245);
+  63   2                  DelayUs2x(245);
+  64   2              }
+  65   1      }
+  66          
+  67          void  Display_LCD()
+  68          {
+  69   1            DisplayOneChar(0, 1, ASCIIR[0]);    //
+  70   1                DisplayOneChar(1, 1, ASCIIR[1]);        //
+  71   1                DisplayOneChar(2, 1, ASCIIR[2]);        //
+  72   1                DisplayOneChar(3, 1, ASCIIR[3]);        //
+  73   1                DisplayOneChar(4, 1, ASCIIR[4]);        //
+  74   1                DisplayOneChar(5, 1, ASCIIR[5]);        //
+  75   1                DisplayOneChar(6, 1, ASCIIR[6]);        //
+  76   1                DisplayOneChar(7, 1, ASCIIR[7]);        //
+  77   1                DisplayOneChar(8, 1, ASCIIR[8]);        //
+  78   1      
+  79   1                DisplayOneChar(9, 1, ASCII[disbuff[0]]);        //右电机速度值百位
+  80   1                DisplayOneChar(10, 1, ASCII[disbuff[1]]);       //右电机速度值十位
+  81   1                DisplayOneChar(11, 1, ASCII[disbuff[2]]);        //右电机速度值个位
+  82   1                DisplayOneChar(12, 1, ASCII[10]);        //
+  83   1                DisplayOneChar(13, 1, ASCII[11]);        //
+  84   1      
+  85   1      }
+  86          /*------------------------------------------------
+  87                              定时器01初始化
+  88          ------------------------------------------------*/
+  89          void TIM0init(void)
+  90          {
+  91   1              TMOD|=0x11;//定时器1工作方式1 (超声波)，定时器0舵机
+  92   1              TH1=0x00;    
+  93   1          TL1=0x00;
+  94   1          TH0=(65536-100)/256;
+  95   1              TL0=(65536-100)%256;
+  96   1          ET1=1;
+  97   1          ET0=1;
+  98   1          EA=1;
+  99   1          TR0=1;//定时器开始
+ 100   1          IE=0x82;
+ 101   1      }
+ 102          void chaoshengbo()
+ 103          {
+ 104   1              TRIG=1;//触发信号是高电平脉冲，宽度大于10us
+ 105   1          DelayUs2x(10);
+ 106   1          TRIG=0;
+ 107   1          while(!ECHO);//等待高电平
+ 108   1          TR1=1;
+ 109   1          while(ECHO);//等待低电平
+ 110   1          TR1=0;
+ 111   1          S=TH1*256+TL1;//取出定时器值高8位和低8位合并
+ 112   1          S=S/58;       //为什么除以58等于厘米，  Y米=（X秒*344）/2
+ 113   1                        // X秒=（ 2*Y米）/344 -> X秒=0.0058*Y米 -> 厘米=微秒/58 
+ 114   1      
+ 115   1              disbuff[0]=S/100;                   //距离值百位
+ 116   1              disbuff[1]=S%100/10;            //距离值十位
+ 117   1          disbuff[2]=S%100%10;                //距离值个位
+C51 COMPILER V9.01   超蒧波盻障_舵籣摇头_                                                  07/13/2016 11:01:09 PAGE 3   
+
+ 118   1      
+ 119   1          if(S>=25)
+ 120   1          {n=1;}
+ 121   1          if(S<25)
+ 122   1          {n=0;}
+ 123   1      
+ 124   1          TH1=0;
+ 125   1          TL1=0;//清除定时器0寄存器中的值
+ 126   1      }
+ 127          /*------------------------------------------------
+ 128                              主函数
+ 129          ------------------------------------------------*/
+ 130          main()
+ 131          {
+ 132   1              Delay1ms(400); //启动等待，等LCM讲入工作状态
+ 133   1              LCMInit(); //LCM初始化
+ 134   1              Delay1ms(5);//延时片刻
+ 135   1              angle=12;//舵机居中
+ 136   1          count=0;
+ 137   1              //Display_LCD();
+ 138   1          TIM0init();//初始化定时器
+ 139   1          while(1)
+ 140   1          {          
+ 141   2                      chaoshengbo();
+ 142   2                      Display_LCD();
+ 143   2                      Front_Distance = S;
+ 144   2              DelayMs(20);
+ 145   2                      
+ 146   2              if(Front_Distance > 30)//如果大于一定距离
+ 147   2              {run();}//前进
+ 148   2              
+ 149   2                      if(Front_Distance < 30)//如果小于一定距离
+ 150   2              {
+ 151   3                              stop();//停车
+ 152   3                  
+ 153   3                  angle=4;
+ 154   3                  count=0;
+ 155   3                  DelayMs(400);
+ 156   3                  chaoshengbo();
+ 157   3                              Display_LCD();
+ 158   3                              Right_Distance= S;
+ 159   3                  DelayMs(20);
+ 160   3      
+ 161   3                  angle=12;
+ 162   3                  count=0;
+ 163   3                  DelayMs(400);
+ 164   3      
+ 165   3                  angle=20;
+ 166   3                  count=0;
+ 167   3                  DelayMs(400);
+ 168   3                  chaoshengbo();
+ 169   3                              Display_LCD();
+ 170   3                              Left_Distance = S;
+ 171   3                  DelayMs(20);
+ 172   3                
+ 173   3                              angle=12;
+ 174   3                  count=0;    
+ 175   3                  DelayMs(400);
+ 176   3                              if(Left_Distance < Right_Distance)        //左边距离小于右边的距离
+ 177   3                  {
+ 178   4                      rightrun();                //调用小车右转       函数
+ 179   4                      DelayMs(100);
+C51 COMPILER V9.01   超蒧波盻障_舵籣摇头_                                                  07/13/2016 11:01:09 PAGE 4   
+
+ 180   4                      }
+ 181   3                  
+ 182   3                              if(Left_Distance >= Right_Distance)
+ 183   3                  {
+ 184   4                              leftrun();                //调用小车左转  函数
+ 185   4                      DelayMs(100);
+ 186   4                  }
+ 187   3                              
+ 188   3                               if((Left_Distance < 30 ) &&( Right_Distance < 30 ))  //左右两边距离都小于30
+ 189   3                          {
+ 190   4                              back();//后退
+ 191   4                              DelayMs(80);
+ 192   4                              leftrun;//左转
+*** WARNING C275 IN LINE 192 OF 超声波避障(舵机摇头).C: expression with possibly no effect
+ 193   4                              DelayMs(90);
+ 194   4                              }
+ 195   3                      }        
+ 196   2              }
+ 197   1      }
+ 198          
+ 199          /*------------------------------------------------
+ 200                           定时器中断子程序
+ 201          ------------------------------------------------*/
+ 202          void Time0_0(void) interrupt 3
+ 203          {
+ 204   1              ECHO=0;
+ 205   1      }
+ 206          void Time1_Int() interrupt 1//舵机
+ 207          {
+ 208   1               TH0=(65536-100)/256;
+ 209   1               TL0=(65536-100)%256;
+ 210   1               if(count<angle)//判断0.5ms次数是否小于角度标识
+ 211   1           pwm=1;//确实小于，pwm输出高电平
+ 212   1           else
+ 213   1           pwm=0;//大于则输出低电平
+ 214   1               count=(count+1);//0.5ms次数加1
+ 215   1        //    count=count%40;//次数始终保持为40即保持周期为20ms
+ 216   1           if(count == 200)   //      保持周期为20ms
+ 217   1               count = 0;
+ 218   1      
+ 219   1               time3++;
+ 220   1               pwm_val_left++;
+ 221   1               pwm_val_right++;
+ 222   1               pwm_out_left_moto();
+ 223   1               pwm_out_right_moto();
+ 224   1      }
+ 225          
+ 226           
+ 227           
+ 228           
+ 229          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1048    ----
+   CONSTANT SIZE    =     92    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     22       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+C51 COMPILER V9.01   超蒧波盻障_舵籣摇头_                                                  07/13/2016 11:01:09 PAGE 5   
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

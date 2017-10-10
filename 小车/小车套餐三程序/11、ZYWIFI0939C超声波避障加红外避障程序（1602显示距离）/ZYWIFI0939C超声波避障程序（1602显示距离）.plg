@@ -1,0 +1,12 @@
+Build Project 'ZYWIFI0939C≥¨…˘≤®±‹’œ≥Ã–Ú£®1602œ‘ ææ‡¿Î£©' - Target 'ƒø±Í 1'
+compiling main.c...
+MAIN.C(69): warning C280: 'Speed_Right': unreferenced local variable
+MAIN.C(69): warning C280: 'Speed_Left': unreferenced local variable
+MAIN.C(87): warning C280: 'Speed_Right': unreferenced local variable
+MAIN.C(87): warning C280: 'Speed_Left': unreferenced local variable
+MAIN.C(96): warning C280: 'Speed_Right': unreferenced local variable
+MAIN.C(96): warning C280: 'Speed_Left': unreferenced local variable
+linking...
+Program Size: data=28.2 xdata=0 code=1780
+creating hex file from "ZYWIFI0939C≥¨…˘≤®±‹’œ≥Ã–Ú£®1602œ‘ ææ‡¿Î£©"...
+"ZYWIFI0939C≥¨…˘≤®±‹’œ≥Ã–Ú£®1602œ‘ ææ‡¿Î£©" - 0 Error(s), 6 Warning(s).

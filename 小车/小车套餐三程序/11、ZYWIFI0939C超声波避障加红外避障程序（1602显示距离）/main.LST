@@ -1,0 +1,292 @@
+C51 COMPILER V9.01   MAIN                                                                  10/10/2017 17:37:10 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /**********************HL-1& ZY-2实验开发板例程************************
+   2          *  平台：HL-1& ZY-2 V8.0 + Keil U3 + STC89C52
+   3          *  名称：1602 LCD 显示红外遥控器编码
+   4          *  公司：雪糕
+   5          *  淘宝：https://hnzyrobot1688.taobao.com/     
+   6          *  网站：www.hnzhiyu.cn 
+   7          *  编写：雪糕
+   8          *  日期：2017-10-10
+   9          *  晶振:11.0592MHZ
+  10          *  论坛：
+  11          *  硬件设置：要有自己动手能力，才能完成实验
+  12          *  使用说明：根据下面IO口自己用杜邦线连接各种模块，可以自己修改各种模块IO口
+  13          
+  14             重点提示：本程序只做参考，不提供技术支持，请自己研究吸收。
+  15          
+  16          ******************************************************************/
+  17          //说明：如果没有LCD1602液晶显示屏的同学，请用杜邦把P0.7引脚接到GND，效果一样。
+  18          #include <at89x51.h>    
+  19          #include <intrins.h>
+  20          #include "LCD1602display.h"
+  21          
+  22          #define  TX  P2_1
+  23          #define  RX  P2_0
+  24          sbit DU = P2^6;
+  25          sbit WE = P2^7;
+  26          #define Forward_L_DATA  180//当前进不能走直线的时候，请调节这两个参数，理想的时候是100,100，最大256，最小0
+             -。0的时候最慢，256的时候最快
+  27          #define Forward_R_DATA  180     //例如小车前进的时候有点向左拐，说明右边马达转速过快，那可以取一个值大一点，另
+             -外一个值小一点，例如 200  190
+  28                                      //直流电机因为制造上的误差，同一个脉宽下也不一定速度一致的，需要自己手动调节
+  29          
+  30          //sbit P4_0=0xc0;       //P4口地址
+  31          
+  32          /*****按照原图接线定义******/
+  33          sbit L293D_IN1=P1^2; 
+  34          sbit L293D_IN2=P1^3;
+  35          sbit L293D_IN3=P1^4;
+  36          sbit L293D_IN4=P1^5;
+  37          sbit L293D_EN1=P1^6;
+  38          sbit L293D_EN2=P1^7;
+  39          
+  40          sbit BUZZ=P2^3;
+  41           #define Left_1_led        P3_5  //左传感器  
+  42                  
+  43           #define Right_1_led       P3_4  //右传感器  
+  44          
+  45          void cmg88()//关数码管，点阵函数
+  46          {
+  47   1      DU=1;  
+  48   1      P0=0X00;
+  49   1      DU=0;
+  50   1      }
+  51          
+  52          void Delay400Ms(void);//延时400毫秒函数
+  53          
+C51 COMPILER V9.01   MAIN                                                                  10/10/2017 17:37:10 PAGE 2   
+
+  54          unsigned char code Range[] ="==Range Finder==";//LCD1602显示格式
+  55          unsigned char code ASCII[13] = "0123456789.-M";
+  56          unsigned char code table[]="Distance:000.0cm";
+  57          unsigned char code table1[]="!!! Out of range";
+  58          
+  59          unsigned char disbuff[4]={0,0,0,0};//用于分别存放距离的值0.1mm、mm、cm和m的值
+  60          
+  61          void Count(void);//距离计算函数
+  62                                    
+  63          unsigned int  time=0;//用于存放定时器时间值
+  64          unsigned long S=0;//用于存放距离的值
+  65          bit  flag =0; //量程溢出标志位
+  66          bit  turn_right_flag;
+  67          
+  68          //========================================================================================================
+             -=================
+  69          void Forward(unsigned char Speed_Right,unsigned char Speed_Left)//         前进
+  70          {
+  71   1      
+  72   1               L293D_IN1=1; 
+  73   1               L293D_IN2=0;
+  74   1               L293D_IN3=1;
+  75   1               L293D_IN4=0;
+  76   1      //     PWM_Set(255-Speed_Right,255-Speed_Left);
+  77   1      }
+*** WARNING C280 IN LINE 69 OF MAIN.C: 'Speed_Right': unreferenced local variable
+*** WARNING C280 IN LINE 69 OF MAIN.C: 'Speed_Left': unreferenced local variable
+  78          void Stop(void) //刹车
+  79          {
+  80   1      
+  81   1           L293D_IN1=0; 
+  82   1               L293D_IN2=0;
+  83   1               L293D_IN3=0;
+  84   1               L293D_IN4=0;
+  85   1      //       PWM_Set(0,0);
+  86   1      }
+  87          void Turn_Right(unsigned char Speed_Right,unsigned char Speed_Left)      //左
+  88          {
+  89   1          L293D_IN1=0; 
+  90   1              L293D_IN2=1;
+  91   1              L293D_IN3=0;
+  92   1              L293D_IN4=0;
+  93   1      //      PWM_Set(255-Speed_Right,255-Speed_Left);
+  94   1      }
+*** WARNING C280 IN LINE 87 OF MAIN.C: 'Speed_Right': unreferenced local variable
+*** WARNING C280 IN LINE 87 OF MAIN.C: 'Speed_Left': unreferenced local variable
+  95          
+  96          void rightrun(unsigned char Speed_Right,unsigned char Speed_Left)        //右
+  97          {
+  98   1          L293D_IN1=0; 
+  99   1              L293D_IN2=0;
+ 100   1              L293D_IN3=0;
+ 101   1              L293D_IN4=1;
+ 102   1      //      PWM_Set(255-Speed_Right,255-Speed_Left);
+ 103   1      }
+*** WARNING C280 IN LINE 96 OF MAIN.C: 'Speed_Right': unreferenced local variable
+*** WARNING C280 IN LINE 96 OF MAIN.C: 'Speed_Left': unreferenced local variable
+ 104          //========================================================================================================
+             -=================
+ 105          /********距离计算程序***************/
+ 106              void Conut(void)
+ 107                  {
+C51 COMPILER V9.01   MAIN                                                                  10/10/2017 17:37:10 PAGE 3   
+
+ 108   1               time=TH1*256+TL1;
+ 109   1               TH1=0;
+ 110   1               TL1=0;
+ 111   1              
+ 112   1               //此时time的时间单位决定于晶振的速度，外接晶振为11.0592MHZ时，
+ 113   1                          //time的值为0.54us*time，单位为微秒
+ 114   1                                      //那么1us声波能走多远的距离呢？1s=1000ms=1000000us 
+ 115   1                                      // 340/1000000=0.00034米
+ 116   1                                      //0.00034米/1000=0.34毫米  也就是1us能走0.34毫米
+ 117   1                                      //但是，我们现在计算的是从超声波发射到反射接收的双路程，
+ 118   1                                      //所以我们将计算的结果除以2才是实际的路程
+ 119   1      
+ 120   1              S=time*2;//先算出一共的时间是多少微秒。
+ 121   1              S=S*0.17;//此时计算到的结果为毫米，并且是精确到毫米的后两位了，有两个小数点 
+ 122   1               if(S<=400)      //
+ 123   1               {      
+ 124   2                  if(turn_right_flag!=1)
+ 125   2                      {
+ 126   3                          Stop();
+ 127   3                          Delay1ms(5);//发现小车自动复位的时候，可以稍微延长一点这个延时，减少电机反向电压对电路板的冲击。
+ 128   3                      }
+ 129   2                      turn_right_flag=1;
+ 130   2                      P2_3=0;
+ 131   2                      Delay1ms(50);
+ 132   2                      P2_3=1;
+ 133   2                  Turn_Right(120,120);                                //小于设定距离时电机后退转弯
+ 134   2               }
+ 135   1               else
+ 136   1               {
+ 137   2                  turn_right_flag=0;
+ 138   2                  Forward(Forward_R_DATA,Forward_L_DATA);                       //前进（大于20-30CM前进）
+ 139   2               }
+ 140   1                       if(Left_1_led==1&&Right_1_led==0)          //右边检测到红外信号
+ 141   1                                       
+ 142   1              {
+ 143   2                rightrun(120,120);     //调用小车右转函数
+ 144   2      
+ 145   2               }
+ 146   1                                 
+ 147   1              if(Right_1_led==1&&Left_1_led==0)               //左边检测到红外信号
+ 148   1              {         
+ 149   2                                            
+ 150   2                  Turn_Right(120,120);                                //小于设定距离时电机后退转弯
+ 151   2      
+ 152   2              }  
+ 153   1               //=======================================
+ 154   1               if((S>=5000)||flag==1) //超出测量范围
+ 155   1               {      
+ 156   2                flag=0;
+ 157   2            DisplayListChar(0, 1, table1);
+ 158   2               }
+ 159   1               else
+ 160   1               {
+ 161   2            disbuff[0]=S%10;
+ 162   2                disbuff[1]=S/10%10;
+ 163   2                disbuff[2]=S/100%10;
+ 164   2                disbuff[3]=S/1000;
+ 165   2                DisplayListChar(0, 1, table);
+ 166   2                DisplayOneChar(9, 1, ASCII[disbuff[3]]);
+ 167   2                DisplayOneChar(10, 1, ASCII[disbuff[2]]);     
+ 168   2                DisplayOneChar(11, 1, ASCII[disbuff[1]]);
+ 169   2            DisplayOneChar(12, 1, ASCII[10]);
+C51 COMPILER V9.01   MAIN                                                                  10/10/2017 17:37:10 PAGE 4   
+
+ 170   2                DisplayOneChar(13, 1, ASCII[disbuff[0]]);
+ 171   2               }
+ 172   1              }
+ 173          
+ 174          /********************************************************/
+ 175               void zd0() interrupt 3              //T0中断用来计数器溢出,超过测距范围
+ 176            {
+ 177   1          flag=1;                      //中断溢出标志
+ 178   1              RX=0;
+ 179   1        }
+ 180          
+ 181          /********超声波高电平脉冲宽度计算程序***************/
+ 182          void Timer_Count(void)
+ 183          {
+ 184   1                       TR1=1;                     //开启计数
+ 185   1                   while(RX);                 //当RX为1计数并等待
+ 186   1                   TR1=0;                             //关闭计数
+ 187   1               Conut();                       //计算
+ 188   1      
+ 189   1      }
+ 190          /********************************************************/
+ 191             void  StartModule()                   //启动模块
+ 192            {
+ 193   1                TX=1;                                      //启动一次模块
+ 194   1            Delay10us(2);
+ 195   1                TX=0;
+ 196   1        }
+ 197          /********************************************************/ 
+ 198          
+ 199          /*************主程序********************/
+ 200          void main(void)
+ 201          {
+ 202   1          unsigned char i;
+ 203   1              unsigned int a;
+ 204   1              cmg88();//关数码管
+ 205   1              Delay1ms(400); //启动等待，等LCM讲入工作状态
+ 206   1              LCMInit(); //LCM初始化
+ 207   1              Delay1ms(5);//延时片刻
+ 208   1      
+ 209   1              DisplayListChar(0, 0, Range);
+ 210   1              DisplayListChar(0, 1, table);
+ 211   1          TMOD=TMOD|0x10;//设T0为方式1，GATE=1；
+ 212   1          EA=1;                                          //开启总中断
+ 213   1          TH1=0;
+ 214   1          TL1=0;          
+ 215   1          ET1=1;             //允许T0中断
+ 216   1      
+ 217   1              //===============================
+ 218   1              //PWM_ini();
+ 219   1              //===============================
+ 220   1              turn_right_flag=0;
+ 221   1              //=================================
+ 222   1      B:              for(i=0;i<50;i++) //判断K3是否按下
+ 223   1                      {
+ 224   2                         Delay1ms(1); //1ms内判断50次，如果其中有一次被判断到K3没按下，便重新检测
+ 225   2                         if(P3_2!=0 )//当K3按下时，启动小车
+ 226   2                         goto B; //跳转到标号B，重新检测
+ 227   2                      }
+ 228   1              //蜂鸣器响一声
+ 229   1              BUZZ=0; //50次检测K3确认是按下之后，蜂鸣器发出“滴”声响，然后启动小车。
+ 230   1              Delay1ms(50);
+ 231   1              BUZZ=1;//响50ms后关闭蜂鸣器
+C51 COMPILER V9.01   MAIN                                                                  10/10/2017 17:37:10 PAGE 5   
+
+ 232   1              //=======================================================================================================
+             -================                      
+ 233   1              while(1)
+ 234   1                {
+ 235   2                      RX=1;
+ 236   2                  StartModule();                               //启动模块
+ 237   2              for(a=951;a>0;a--)
+ 238   2                  {
+ 239   3                         
+ 240   3                     if(RX==1)
+ 241   3                         {
+ 242   4                 Timer_Count();                //超声波高电平脉冲宽度计算函数
+ 243   4                         }
+ 244   3               }
+ 245   2              }
+ 246   1      } 
+ 247          
+ 248          
+ 249          
+ 250                          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    861    ----
+   CONSTANT SIZE    =     64    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10      16
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  6 WARNING(S),  0 ERROR(S)

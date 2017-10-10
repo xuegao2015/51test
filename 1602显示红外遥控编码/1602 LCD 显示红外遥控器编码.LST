@@ -1,0 +1,284 @@
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë
+OBJECT MODULE PLACED IN 1602 LCD ÏÔÊ¾ºìÍâÒ£¿ØÆ÷±àÂë.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 1602 LCD ÏÔÊ¾ºìÍâÒ£¿ØÆ÷±àÂë.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /**********************ZYWIFI0939C-WIFI»úÆ÷ÈËÊµÑé°åÀý³Ì************************
+   2          *  Æ½Ì¨£ºZYWIFI0939C-WIFI»úÆ÷ÈË + Keil U4 + STC89C52
+   3          *  Ãû³Æ£ºZY-1ÖÇÄÜÐ¡³µ²Î¿¼³ÌÐò
+   4          *  ¹«Ë¾£ººþÄÏÖÇÓî¿Æ½ÌÉè±¸ÓÐÏÞ¹«Ë¾
+   5          *  ÌÔ±¦£ºhttps://hnzyrobot1688.taobao.com/     
+   6          *  ÍøÕ¾£ºwww.hnzhiyu.cn 
+   7          *  ±àÐ´£ºÖÇÓî¹«Ë¾ÑÐ·¢Ò»²¿
+   8          *  ÈÕÆÚ£º2015-1-15
+   9          *  ½»Á÷:ÖÇÄÜ³µQQ:261339276
+  10          *  ¾§Õñ:11.0592MHZ
+  11          *  ËµÃ÷£ºÃâ·Ñ¿ªÔ´£¬²»Ìá¹©Ô´´úÂë·ÖÎö
+  12          *  Ó²¼þÉèÖÃ£ºÒªÓÐ×Ô¼º¶¯ÊÖÄÜÁ¦£¬²ÅÄÜÍê³ÉÊµÑé
+  13          *  Ê¹ÓÃËµÃ÷£º¸ù¾ÝÏÂÃæIO¿Ú×Ô¼ºÓÃ¶Å°îÏßÁ¬½Ó¸÷ÖÖÄ£¿é£¬¿ÉÒÔ×Ô¼ºÐÞ¸Ä¸÷ÖÖÄ£¿éIO¿Ú
+  14          *  ÊÓÆµ½Ì³Ì£º±¾Ð¡³µÅäÌ×Ñ§Ï°CÓïÑÔÏêÏ¸ÊÓÆµ½Ì³Ì£¬×ÊÁÏÍ³Ò»ÍøÅÌÏÂÔØ
+  15             ÖØµãÌáÊ¾£º±¾³ÌÐòÖ»×ö²Î¿¼£¬²»Ìá¹©¼¼ÊõÖ§³Ö£¬Çë×Ô¼ºÑÐ¾¿ÎüÊÕ¡£
+  16            ZYWIFI0939WIFI¿ØÖÆÖÇÄÜ»úÆ÷ÈË¶Å°îÏß½ÓÏß·½·¨£¬ÇëÒ»¶¨ÕÕ×ö£¬·ñÔò¿ÉÄÜ²»¹¤×÷£¬²¢ÉÕ»ÙÐ¡³µ¡£
+  17             
+  18          ******************************************************************/   
+  19          
+  20          //#include <reg52.h>    
+  21          #include <STC89C5xRC.H>
+  22          #include <intrins.h>
+  23          #include "LCD1602display.h"
+  24          #define uint    unsigned int                          //ÖØ¶¨ÒåÎÞ·ûºÅÕûÊýÀàÐÍ
+  25          #define uchar   unsigned char                         //ÖØ¶¨ÒåÎÞ·ûºÅ×Ö·ûÀàÐÍ
+  26          
+  27          uchar code  LedShowData[]={0x03,0x9F,0x25,0x0D,0x99,  //¶¨ÒåÊýÂë¹ÜÏÔÊ¾Êý¾Ý
+  28                                      0x49,0x41,0x1F,0x01,0x19};//0,1,2,3,4,5,6,7,8,9
+  29          
+  30          uchar code  RecvData[]={0x19,0x46,0x15,0x44,0x43,0x40,0x0D,0x0E,0x00,0x0F};
+  31          
+  32          uchar IRCOM[7];                                                                          //»º´æºìÍâ½ÓÊÕÊý¾Ý
+  33          
+  34          static unsigned int LedFlash;                         //¶¨ÒåÉÁ¶¯ÆµÂÊ¼ÆÊý±äÁ¿
+  35          
+  36          unsigned char RunFlag=0;                              //¶¨ÒåÔËÐÐ±êÖ¾Î»
+  37          bit EnableLight=0;                                    //¶¨ÒåÖ¸Ê¾µÆÊ¹ÄÜÎ»
+  38          
+  39          /*************Íê³É×´Ì¬Ö¸Ê¾µÆ¶¨Òå*************/
+  40          sbit S1=P3^2;                                         //¶¨ÒåS1°´¼ü¶Ë¿Ú
+  41                                                   
+  42          /*************Íê³Éµç»ú¿ØÖÆ¶Ë¿Ú¶¨Òå***********/
+  43          sbit M1A=P1^2;                                        //¶¨Òåµç»ú1ÕýÏò¶Ë¿Ú
+  44          sbit M1B=P1^3;                                        //¶¨Òåµç»ú1·´Ïò¶Ë¿Ú
+  45          sbit M2A=P1^4;                                        //¶¨Òåµç»ú2ÕýÏò¶Ë¿Ú
+  46          sbit M2B=P1^5;                                        //¶¨Òåµç»ú2·´Ïò¶Ë¿Ú
+  47          
+  48          sbit SB1=P2^3;                                        //¶¨Òå·äÃù¶Ë¿Ú
+  49          /*********Íê³É»°Í²,¹âÃôµç×è,·äÃùÆ÷.¶Ë¿Ú¶¨Òå**/
+  50          sbit IRIN=P3^3;                                       //¶¨ÒåºìÍâ½ÓÊÕ¶Ë¿Ú
+  51          /*********Íê³ÉºìÍâ½ÓÊÕ¶Ë¿ÚµÄ¶¨Òå*************/
+  52          #define ShowPort P0                                   //¶¨ÒåÊýÂë¹ÜÏÔÊ¾¶Ë¿Ú
+  53          
+  54          extern void ControlCar(uchar CarType);                //ÉùÃ÷Ð¡³µ¿ØÖÆ×Ó³ÌÐò
+  55          
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 2   
+
+  56          void delayms(unsigned char x)                         //0.14mSÑÓÊ±³ÌÐò
+  57          {
+  58   1        unsigned char i;                                    //¶¨ÒåÁÙÊ±±äÁ¿
+  59   1        while(x--)                                          //ÑÓÊ±Ê±¼äÑ­»·
+  60   1        {
+  61   2          for (i = 0; i<13; i++) {}                         //14mSÑÓÊ±
+  62   2        }
+  63   1      }
+  64          
+  65          
+  66          void Delay()                                          //¶¨ÒåÑÓÊ±×Ó³ÌÐò
+  67          { uint DelayTime=30000;                               //¶¨ÒåÑÓÊ±Ê±¼ä±äÁ¿
+  68   1        while(DelayTime--);                                 //¿ªÊ¼½øÐÐÑÓÊ±Ñ­»·
+  69   1        return;                                             //×Ó³ÌÐò·µ»Ø
+  70   1      }
+  71          
+  72          void tingzhi()
+  73          {
+  74   1         M1A=0;                                   //½«M1µç»úA¶Ë³õÊ¼»¯Îª0
+  75   1         M1B=0;                                   //½«M1µç»úB¶Ë³õÊ¼»¯Îª0
+  76   1         M2A=0;                                   //½«M2µç»úA¶Ë³õÊ¼»¯Îª0
+  77   1         M2B=0;
+  78   1      
+  79   1      }
+  80          
+  81          void qianjin()
+  82          {
+  83   1         M1A=1;                                   
+  84   1         M1B=0;                                   
+  85   1         M2A=1;                                   
+  86   1         M2B=0;
+  87   1      }
+  88          
+  89          void houtui()
+  90          {
+  91   1         M1A=0;                                   
+  92   1         M1B=1;                                   
+  93   1         M2A=0;                                   
+  94   1         M2B=1;
+  95   1      }
+  96          
+  97          void youzhuan()
+  98          {
+  99   1         M1A=1;                                   
+ 100   1         M1B=0;                                   
+ 101   1         M2A=0;                                   
+ 102   1         M2B=1;
+ 103   1      
+ 104   1      }
+ 105          
+ 106          void zuozhuan()
+ 107          {
+ 108   1         M1A=0;                                   
+ 109   1         M1B=1;                                   
+ 110   1         M2A=1;                                   
+ 111   1         M2B=0;
+ 112   1      
+ 113   1      }
+ 114          
+ 115          void ControlCar(unsigned char ConType)    //¶¨Òåµç»ú¿ØÖÆ×Ó³ÌÐò
+ 116          {
+ 117   1       
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 3   
+
+ 118   1        tingzhi();
+ 119   1       switch(ConType)                          //ÅÐ¶ÏÓÃ»§Éè¶¨µç»úÐÎÊ½
+ 120   1       {
+ 121   2        case 1:  //Ç°½ø                         //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½1
+ 122   2        { 
+ 123   3          
+ 124   3              tingzhi();                                                    //½øÈëÇ°½øÖ®Ç° ÏÈÍ£Ö¹Ò»¶ÎÊ±¼ä  ·ÀÖ¹µç»ú·´ÏòµçÑ¹³å»÷Ö÷°å µ¼ÖÂÏµÍ³¸´Î»
+ 125   3               Delay1ms(240);
+ 126   3              qianjin();
+ 127   3              ShowPort=LedShowData[1];
+ 128   3          break;
+ 129   3        }
+ 130   2        case 2: //ºóÍË                              //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½2
+ 131   2        { 
+ 132   3          tingzhi();                                                        //½øÈëºóÍËÖ®Ç° ÏÈÍ£Ö¹Ò»¶ÎÊ±¼ä  ·ÀÖ¹µç»ú·´ÏòµçÑ¹³å»÷Ö÷°å µ¼ÖÂÏµÍ³¸´Î»
+ 133   3                Delay1ms(240);
+ 134   3      //      LeftLed = 1 ;    
+ 135   3              houtui();
+ 136   3              ShowPort=LedShowData[2];                                //M2µç»ú·´×ª
+ 137   3          break;
+ 138   3        }
+ 139   2        case 3: //×ó×ª                              //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½3
+ 140   2        { 
+ 141   3          tingzhi();                                                            //½øÈë×ó×ªÖ®Ç° ÏÈÍ£Ö¹Ò»¶ÎÊ±¼ä  ·ÀÖ¹µç»ú·´ÏòµçÑ¹³å»÷Ö÷°å µ¼ÖÂÏµÍ³¸´Î»
+ 142   3               Delay1ms(240); 
+ 143   3              zuozhuan(); 
+ 144   3              ShowPort=LedShowData[3];                              //M2µç»úÕý×ª
+ 145   3              break;
+ 146   3        }
+ 147   2        case 4: //ÓÒ×ª                              //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½4
+ 148   2        { 
+ 149   3          tingzhi();                                                            //½øÈëÓÒ×ªÖ®Ç° ÏÈÍ£Ö¹Ò»¶ÎÊ±¼ä  ·ÀÖ¹µç»ú·´ÏòµçÑ¹³å»÷Ö÷°å µ¼ÖÂÏµÍ³¸´Î»
+ 150   3                Delay1ms(240);
+ 151   3              youzhuan();                                //M1µç»úÕý×ª
+ 152   3          ShowPort=LedShowData[4];                                      //M2µç»ú·´×ª
+ 153   3              break;
+ 154   3        }
+ 155   2        case 5: //Í£Ö¹                          //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½8
+ 156   2        {
+ 157   3          tingzhi();
+ 158   3              ShowPort=LedShowData[0]; 
+ 159   3              break; 
+ 160   3                                            //ÍË³öµ±Ç°Ñ¡Ôñ
+ 161   3        }
+ 162   2       }
+ 163   1      }
+ 164          
+ 165          void IR_IN() interrupt 2 using 0                      //¶¨ÒåINT2Íâ²¿ÖÐ¶Ïº¯Êý
+ 166          {
+ 167   1        unsigned char j,k,N=0;                              //¶¨ÒåÁÙÊ±½ÓÊÕ±äÁ¿
+ 168   1         
+ 169   1        EX1 = 0;                                            //¹Ø±ÕÍâ²¿ÖÐ¶Ï,·ÀÖ¹ÔÙÓÐÐÅºÅµ½´ï   
+ 170   1        delayms(15);                                        //ÑÓÊ±Ê±¼ä£¬½øÐÐºìÍâÏû¶¶
+ 171   1        if (IRIN==1)                                        //ÅÐ¶ÏºìÍâÐÅºÅÊÇ·ñÏûÊ§
+ 172   1        {  
+ 173   2           EX1 =1;                                          //Íâ²¿ÖÐ¶Ï¿ª
+ 174   2               return;                                          //·µ»Ø
+ 175   2        } 
+ 176   1                                 
+ 177   1        while (!IRIN)                                       //µÈIR±äÎª¸ßµçÆ½£¬Ìø¹ý9msµÄÇ°µ¼µÍµçÆ½ÐÅºÅ¡£
+ 178   1        {
+ 179   2            delayms(1);                                     //ÑÓÊ±µÈ´ý
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 4   
+
+ 180   2        }
+ 181   1      
+ 182   1        for (j=0;j<4;j++)                                   //²É¼¯ºìÍâÒ£¿ØÆ÷Êý¾Ý
+ 183   1        { 
+ 184   2          for (k=0;k<8;k++)                                 //·Ö´Î²É¼¯8Î»Êý¾Ý
+ 185   2          {
+ 186   3             while (IRIN)                                   //µÈ IR ±äÎªµÍµçÆ½£¬Ìø¹ý4.5msµÄÇ°µ¼¸ßµçÆ½ÐÅºÅ¡£
+ 187   3             {
+ 188   4               delayms(1);                                  //ÑÓÊ±µÈ´ý
+ 189   4             }
+ 190   3             
+ 191   3             while (!IRIN)                                  //µÈ IR ±äÎª¸ßµçÆ½
+ 192   3             {
+ 193   4               delayms(1);                                  //ÑÓÊ±µÈ´ý
+ 194   4             }
+ 195   3         
+ 196   3             while (IRIN)                                   //¼ÆËãIR¸ßµçÆ½Ê±³¤
+ 197   3             {
+ 198   4               delayms(1);                                  //ÑÓÊ±µÈ´ý
+ 199   4               N++;                                         //¼ÆÊýÆ÷¼Ó¼Ó
+ 200   4               if (N>=30)                                   //ÅÐ¶Ï¼ÆÊýÆ÷ÀÛ¼ÓÖµ
+ 201   4                   { 
+ 202   5                 EX1=1;                                     //´ò¿ªÍâ²¿ÖÐ¶Ï¹¦ÄÜ
+ 203   5                     return;                                    //·µ»Ø
+ 204   5               }                   
+ 205   4             }
+ 206   3                                             
+ 207   3            IRCOM[j]=IRCOM[j] >> 1;                         //½øÐÐÊý¾ÝÎ»ÒÆ²Ù×÷²¢×Ô¶¯²¹Áã
+ 208   3           
+ 209   3            if (N>=8)                                       //ÅÐ¶ÏÊý¾Ý³¤¶È 
+ 210   3            {
+ 211   4               IRCOM[j] = IRCOM[j] | 0x80;                  //Êý¾Ý×î¸ßÎ»²¹1
+ 212   4            } 
+ 213   3            N=0;                                            //ÇåÁãÎ»Êý¼ÆÂ¼Æ÷
+ 214   3          }
+ 215   2        }
+ 216   1         
+ 217   1        if (IRCOM[2]!=~IRCOM[3])                            //ÅÐ¶ÏµØÖ·ÂëÊÇ·ñÏàÍ¬
+ 218   1        { 
+ 219   2           EX1=1;                                           //´ò¿ªÍâ²¿ÖÐ¶Ï
+ 220   2           return;                                          //·µ»Ø
+ 221   2        }
+ 222   1        DisplayListChar(0, 0, IRCOM);
+*** WARNING C259 IN LINE 222 OF 1602 LCD ÏÔÊ¾ºìÍâÒ£¿ØÆ÷±àÂë.C: 'parameter': pointer: different mspace
+ 223   1      
+ 224   1        for(j=0;j<10;j++)                                   //Ñ­»·½øÐÐ¼üÂë½âÎö
+ 225   1         {
+ 226   2                if(IRCOM[2]==RecvData[j])                       //½øÐÐ¼üÎ»¶ÔÓ¦
+ 227   2            {
+ 228   3             // ControlCar(j);                                          //ÊýÂë¹ÜÏÔÊ¾ÏàÓ¦ÊýÂë
+ 229   3            }
+ 230   2         }
+ 231   1         
+ 232   1         
+ 233   1         EX1 = 1;                                           //Íâ²¿ÖÐ¶Ï¿ª 
+ 234   1      } 
+ 235          
+ 236          void main(void)                                       //Ö÷³ÌÐòÈë¿Ú
+ 237          {
+ 238   1       bit ExeFlag=0;                                       //¶¨Òå¿ÉÖ´ÐÐÎ»±äÁ¿
+ 239   1       
+ 240   1       LedFlash=3000;                                       //¶ÔÉÁµÆÊý¾Ý½øÐÐ³õÊ¼»¯
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 5   
+
+ 241   1       EX1=1;                                               //Í¬Òâ¿ªÆôÍâ²¿ÖÐ¶Ï1
+ 242   1       IT1=1;                                               //Éè¶¨Íâ²¿ÖÐ¶Ï1ÎªµÍ±ßÔµ´¥·¢ÀàÐÍ
+ 243   1       EA=1;                                                //×ÜÖÐ¶Ï¿ªÆô
+ 244   1       ShowPort=LedShowData[0];                             //ÊýÂë¹ÜÏÔÊ¾Êý×Ö0
+ 245   1      while(1)                                              //³ÌÐòÖ÷Ñ­»·
+ 246   1       {
+ 247   2         
+ 248   2         Delay();                                           //ÑÓÊ±
+ 249   2        // RunStopState=~RunStopState;                        //ÔËÐÐÖ¸Ê¾µÆ×´Ì¬×ª±ä
+ 250   2        
+ 251   2       }
+ 252   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    673    ----
+   CONSTANT SIZE    =     20    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

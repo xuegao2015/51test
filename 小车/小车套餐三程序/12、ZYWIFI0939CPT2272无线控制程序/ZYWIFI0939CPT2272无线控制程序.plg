@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\ZYWIFI094智能小车最终光盘资料20160708\9.ZYWIFI094智能小车例程代码\小车套餐三程序\13、ZYWIFI0939CPT2272无线控制程序\ZYWIFI0939CPT2272无线控制程序.uvproj
+Project File Date:  01/07/2016
+
+<h2>Output:</h2>
+Build target '目标 1'
+compiling main.c...
+linking...
+Program Size: data=9.0 xdata=0 code=165
+creating hex file from "ZYWIFI0939CPT2272无线控制程序"...
+"ZYWIFI0939CPT2272无线控制程序" - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"1602 LCD 显示红外遥控器编码.obj" 
+TO "1602显示红外遥控编码" 
+RAMSIZE(256) 
