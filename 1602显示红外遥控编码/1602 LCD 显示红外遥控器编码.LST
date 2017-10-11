@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 1   
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/11/2017 09:11:40 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE 1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë
@@ -62,7 +62,7 @@ line level    source
   53          
   54          extern void ControlCar(uchar CarType);                //ÉùÃ÷Ð¡³µ¿ØÖÆ×Ó³ÌÐò
   55          
-C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 2   
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/11/2017 09:11:40 PAGE 2   
 
   56          void delayms(unsigned char x)                         //0.14mSÑÓÊ±³ÌÐò
   57          {
@@ -126,7 +126,7 @@ line level    source
  115          void ControlCar(unsigned char ConType)    //¶¨Òåµç»ú¿ØÖÆ×Ó³ÌÐò
  116          {
  117   1       
-C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 3   
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/11/2017 09:11:40 PAGE 3   
 
  118   1        tingzhi();
  119   1       switch(ConType)                          //ÅÐ¶ÏÓÃ»§Éè¶¨µç»úÐÎÊ½
@@ -190,7 +190,7 @@ line level    source
  177   1        while (!IRIN)                                       //µÈIR±äÎª¸ßµçÆ½£¬Ìø¹ý9msµÄÇ°µ¼µÍµçÆ½ÐÅºÅ¡£
  178   1        {
  179   2            delayms(1);                                     //ÑÓÊ±µÈ´ý
-C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 4   
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/11/2017 09:11:40 PAGE 4   
 
  180   2        }
  181   1      
@@ -254,7 +254,7 @@ line level    source
  238   1       bit ExeFlag=0;                                       //¶¨Òå¿ÉÖ´ÐÐÎ»±äÁ¿
  239   1       
  240   1       LedFlash=3000;                                       //¶ÔÉÁµÆÊý¾Ý½øÐÐ³õÊ¼»¯
-C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/10/2017 17:39:01 PAGE 5   
+C51 COMPILER V9.01   1602_LCD_ÏÔÊ¾ºìÍ_Ò£¿ØÆ÷±à_ë                                           10/11/2017 09:11:40 PAGE 5   
 
  241   1       EX1=1;                                               //Í¬Òâ¿ªÆôÍâ²¿ÖÐ¶Ï1
  242   1       IT1=1;                                               //Éè¶¨Íâ²¿ÖÐ¶Ï1ÎªµÍ±ßÔµ´¥·¢ÀàÐÍ
