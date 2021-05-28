@@ -165,7 +165,7 @@ void ControlCar(unsigned char ConType)    //定义电机控制子程序
 void IR_IN() interrupt 2 using 0                      //定义INT2外部中断函数
 {
   unsigned char j,k,N=0;                              //定义临时接收变量
-   
+  DisplayListChar(0, 0, IRCOM);   
   EX1 = 0;                                            //关闭外部中断,防止再有信号到达   
   delayms(15);                                        //延时时间，进行红外消抖
   if (IRIN==1)                                        //判断红外信号是否消失

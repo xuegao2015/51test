@@ -1,0 +1,95 @@
+C51 COMPILER V9.01   STC89C52RC_BASE_MAN                                                   10/12/2017 16:41:04 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE STC89C52RC_BASE_MAN
+OBJECT MODULE PLACED IN STC89C52RC_BASE_man.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE STC89C52RC_BASE_man.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /**********************ZYWIFI0939C-WIFI机器人实验板例程************************
+   2          *  平台：ZYWIFI0939C-WIFI机器人 + Keil U4 + STC89C52
+   3          *  名称：ZY-1智能小车参考程序
+   4          *  公司：湖南智宇科教设备有限公司
+   5          *  淘宝：https://hnzyrobot1688.taobao.com/     
+   6          *  网站：www.hnzhiyu.cn 
+   7          *  编写：智宇公司研发一部
+   8          *  日期：2015-1-15
+   9          *  交流:智能车QQ:261339276
+  10          *  晶振:11.0592MHZ
+  11          *  说明：免费开源，不提供源代码分析
+  12          *  硬件设置：要有自己动手能力，才能完成实验
+  13          *  使用说明：根据下面IO口自己用杜邦线连接各种模块，可以自己修改各种模块IO口
+  14          *  视频教程：本小车配套学习C语言详细视频教程，资料统一网盘下载
+  15             重点提示：本程序只做参考，不提供技术支持，请自己研究吸收。
+  16            ZYWIFI0939WIFI控制智能机器人杜邦线接线方法，请一定照做，否则可能不工作，并烧毁小车。
+  17             
+  18          ******************************************************************/   
+  19          
+  20          #include "MCU_STC89C52RC.h"
+  21          #include <intrins.h>
+  22          #include "LCD1602display.h"
+  23          #define uint    unsigned int                          //重定义无符号整数类型
+  24          #define uchar   unsigned char       
+  25          
+  26          unsigned char code Range[] ="==Range Finder==";//LCD1602显示格式
+  27          unsigned char code ASCII[13] = "0123456789.-M";
+  28          unsigned char code table[]="Distance:000.0cm";
+  29          unsigned char code table1[]="!!! Out of range";
+  30          
+  31          void cmg88()//关数码管，点阵函数
+  32          {
+  33   1              P26=1;  
+  34   1              P0=0X00;
+  35   1              P26=0;
+  36   1      }
+  37          //=======================  1602 LED TEST
+  38          void testLed(); 
+  39          void testLed()
+  40          {
+  41   1      
+  42   1      
+  43   1              cmg88();//关数码管
+  44   1              Delay1ms(400); //启动等待，等LCM讲入工作状态
+  45   1              LCMInit(); //LCM初始化
+  46   1              Delay1ms(5);//延时片刻
+  47   1      
+  48   1              DisplayListChar(0, 0, Range);
+  49   1              DisplayListChar(0, 1, table);
+  50   1      
+  51   1              while(1)                                              //程序主循环
+  52   1               {
+  53   2                      unsigned char i;
+  54   2                  for(i=13;i>0;i--)
+  55   2                      {
+C51 COMPILER V9.01   STC89C52RC_BASE_MAN                                                   10/12/2017 16:41:04 PAGE 2   
+
+  56   3                      Delay1ms(1000);  
+  57   3                              DisplayOneChar(15, 1, ASCII[i]);      
+  58   3                      }                                   //延时
+  59   2                
+  60   2               }
+  61   1      }
+  62          //====end 1602 LED Test===========
+  63          
+  64          void main(void)                                       //主程序入口
+  65          {
+  66   1                testLed();
+  67   1      
+  68   1      }
+  69          
+  70          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    390    ----
+   CONSTANT SIZE    =     64    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

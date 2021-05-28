@@ -1,12 +1,9 @@
-Build Project 'ZYWIFI0939C超声波避障程序（1602显示距离）' - Target '目标 1'
-compiling main.c...
-MAIN.C(69): warning C280: 'Speed_Right': unreferenced local variable
-MAIN.C(69): warning C280: 'Speed_Left': unreferenced local variable
-MAIN.C(87): warning C280: 'Speed_Right': unreferenced local variable
-MAIN.C(87): warning C280: 'Speed_Left': unreferenced local variable
-MAIN.C(96): warning C280: 'Speed_Right': unreferenced local variable
-MAIN.C(96): warning C280: 'Speed_Left': unreferenced local variable
-linking...
-Program Size: data=28.2 xdata=0 code=1780
-creating hex file from "ZYWIFI0939C超声波避障程序（1602显示距离）"...
-"ZYWIFI0939C超声波避障程序（1602显示距离）" - 0 Error(s), 6 Warning(s).
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+D:\Develop\C51Work\小车\小车套餐三程序\11、ZYWIFI0939C超声波避障加红外避障程序（1602显示距离）\ZYWIFI0939C超声波避障程序（1602显示距离）.uvproj
+Project File Date:  12/27/2015
+
+<h2>Output:</h2>

@@ -1,0 +1,457 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Develop\C51Work\STC89C52Base\STC89C52RC_BASE.uvproj
+Project File Date:  10/12/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  STARTUP.obj (?C_STARTUP)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  STARTUP.obj (?C_STARTUP)
+    ADDRESS: 000DH
+Program Size: data=9.0 xdata=0 code=15
+"STC89C52RC_BASE" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  STARTUP.obj (?C_STARTUP)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  STARTUP.obj (?C_STARTUP)
+    ADDRESS: 000DH
+Program Size: data=9.0 xdata=0 code=15
+"STC89C52RC_BASE" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+Program Size: data=21.2 xdata=0 code=558
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=21.2 xdata=0 code=558
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+Program Size: data=21.2 xdata=0 code=558
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+SOFTTIMER.H(27): warning C206: 'DisplayOneChar': missing function-prototype
+SOFTTIMER.H(27): error C267: 'DisplayOneChar': requires ANSI-style prototype
+LCD1602DISPLAY.H(71): error C231: 'DisplayOneChar': redefinition
+LCD1602DISPLAY.H(177): error C231: 'DisplayOneChar': redefinition
+LCD1602DISPLAY.H(184): error C231: 'DisplayOneChar': redefinition
+LCD1602DISPLAY.H(203): error C237: '_DisplayListChar': function already has a body
+LCD1602DISPLAY.H(225): error C237: '_Delay1ms': function already has a body
+LCD1602DISPLAY.H(243): error C237: '_Delay10us': function already has a body
+STC89C52RC_BASE_MAN.C(77): error C237: '_Delay1ms': function already has a body
+STC89C52RC_BASE_man.c - 8 Error(s), 1 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+SOFTTIMER.H(27): warning C206: 'DisplayOneChar': missing function-prototype
+SOFTTIMER.H(27): error C267: 'DisplayOneChar': requires ANSI-style prototype
+LCD1602DISPLAY.H(71): error C231: 'DisplayOneChar': redefinition
+LCD1602DISPLAY.H(167): error C231: 'DisplayOneChar': redefinition
+LCD1602DISPLAY.H(174): error C231: 'DisplayOneChar': redefinition
+LCD1602DISPLAY.H(193): error C237: '_DisplayListChar': function already has a body
+STC89C52RC_BASE_MAN.C(77): error C237: '_Delay1ms': function already has a body
+STC89C52RC_BASE_man.c - 6 Error(s), 1 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(77): error C237: '_Delay1ms': function already has a body
+STC89C52RC_BASE_man.c - 1 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCMINIT?STC89C52RC_BASE_MAN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAYLISTCHAR?STC89C52RC_BASE_MAN
+Program Size: data=29.2 xdata=0 code=842
+"STC89C52RC_BASE" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCMINIT?STC89C52RC_BASE_MAN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAYLISTCHAR?STC89C52RC_BASE_MAN
+Program Size: data=29.2 xdata=0 code=842
+"STC89C52RC_BASE" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(30): error C202: 'LedFlash': undefined identifier
+STC89C52RC_BASE_MAN.C(34): error C202: 'ShowPort': undefined identifier
+Target not created
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(30): error C202: 'LedFlash': undefined identifier
+STC89C52RC_BASE_MAN.C(34): error C202: 'ShowPort': undefined identifier
+STC89C52RC_BASE_man.c - 2 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(32): warning C206: 'Delay': missing function-prototype
+STC89C52RC_BASE_man.c - 0 Error(s), 1 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(32): warning C206: 'Delay': missing function-prototype
+STC89C52RC_BASE_man.c - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCMINIT?STC89C52RC_BASE_MAN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAYLISTCHAR?STC89C52RC_BASE_MAN
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 013FH
+Program Size: data=17.0 xdata=0 code=323
+"STC89C52RC_BASE" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(32): warning C206: 'Delay': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCMINIT?STC89C52RC_BASE_MAN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAYLISTCHAR?STC89C52RC_BASE_MAN
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 013FH
+Program Size: data=17.0 xdata=0 code=323
+"STC89C52RC_BASE" - 0 Error(s), 5 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(32): warning C206: 'cmg88': missing function-prototype
+STC89C52RC_BASE_MAN.C(43): warning C206: 'Delay': missing function-prototype
+STC89C52RC_BASE_man.c - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 00BDH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 00E6H
+Program Size: data=16.0 xdata=0 code=428
+"STC89C52RC_BASE" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(32): warning C206: 'cmg88': missing function-prototype
+STC89C52RC_BASE_MAN.C(43): warning C206: 'Delay': missing function-prototype
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 00BDH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 00E6H
+Program Size: data=16.0 xdata=0 code=428
+"STC89C52RC_BASE" - 0 Error(s), 6 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(32): warning C206: 'cmg88': missing function-prototype
+STC89C52RC_BASE_MAN.C(43): warning C206: 'Delay': missing function-prototype
+STC89C52RC_BASE_man.c - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MAIN1?STC89C52RC_BASE_MAN
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 0149H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 0172H
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  MAIN
+    MODULE:  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  MAIN
+    MODULE:  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+    ADDRESS: 0010H
+Program Size: data=17.0 xdata=0 code=557
+"STC89C52RC_BASE" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(32): warning C206: 'cmg88': missing function-prototype
+STC89C52RC_BASE_MAN.C(43): warning C206: 'Delay': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MAIN1?STC89C52RC_BASE_MAN
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 0149H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 0172H
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  MAIN
+    MODULE:  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  MAIN
+    MODULE:  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+    ADDRESS: 0010H
+Program Size: data=17.0 xdata=0 code=557
+"STC89C52RC_BASE" - 0 Error(s), 9 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(31): warning C206: 'testLed': missing function-prototype
+STC89C52RC_BASE_MAN.C(36): error C231: 'testLed': redefinition
+STC89C52RC_BASE_man.c - 1 Error(s), 1 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(33): error C236: '_testLed': different length of parameter lists
+STC89C52RC_BASE_man.c - 1 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(34): warning C206: 'cmg88': missing function-prototype
+STC89C52RC_BASE_MAN.C(45): warning C206: 'Delay': missing function-prototype
+STC89C52RC_BASE_man.c - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 00BDH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 00E6H
+Program Size: data=16.0 xdata=0 code=431
+"STC89C52RC_BASE" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(34): warning C206: 'cmg88': missing function-prototype
+STC89C52RC_BASE_MAN.C(45): warning C206: 'Delay': missing function-prototype
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CMG88
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 00BDH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY
+    MODULE:  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+    ADDRESS: 00E6H
+Program Size: data=16.0 xdata=0 code=431
+"STC89C52RC_BASE" - 0 Error(s), 6 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(36): warning C206: 'cmg88': missing function-prototype
+STC89C52RC_BASE_MAN.C(47): warning C206: 'Delay': missing function-prototype
+STC89C52RC_BASE_MAN.C(32): warning C280: 'ASCII': unreferenced local variable
+STC89C52RC_BASE_MAN.C(34): warning C280: 'table1': unreferenced local variable
+STC89C52RC_BASE_man.c - 0 Error(s), 4 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(36): warning C206: 'cmg88': missing function-prototype
+STC89C52RC_BASE_MAN.C(47): warning C206: 'Delay': missing function-prototype
+STC89C52RC_BASE_man.c - 0 Error(s), 2 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(32): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_MAN.C(34): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_man.c - 2 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(25): error C146: 'P26': invalid base address
+STC89C52RC_BASE_MAN.C(26): error C146: 'P27': invalid base address
+STC89C52RC_BASE_MAN.C(35): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_MAN.C(37): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_man.c - 4 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(25): error C146: 'P26': invalid base address
+STC89C52RC_BASE_MAN.C(26): error C146: 'P27': invalid base address
+STC89C52RC_BASE_MAN.C(35): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_MAN.C(37): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_man.c - 4 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(25): error C146: 'P26': invalid base address
+STC89C52RC_BASE_MAN.C(26): error C146: 'P27': invalid base address
+STC89C52RC_BASE_MAN.C(35): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_MAN.C(37): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_man.c - 4 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(25): error C195: '*' illegal indirection
+STC89C52RC_BASE_MAN.C(26): error C146: 'P27': invalid base address
+STC89C52RC_BASE_MAN.C(35): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_MAN.C(37): error C202: 'DU': undefined identifier
+STC89C52RC_BASE_man.c - 4 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(35): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(35): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+STC89C52RC_BASE_man.c - 4 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(35): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(35): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+STC89C52RC_BASE_man.c - 4 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(35): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(35): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(35): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(35): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+Target not created
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+STC89C52RC_BASE_MAN.C(37): error C141: syntax error near '='
+STC89C52RC_BASE_man.c - 2 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=16.0 xdata=0 code=446
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+Program Size: data=16.0 xdata=0 code=446
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=16.0 xdata=0 code=443
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+Program Size: data=16.0 xdata=0 code=443
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(54): error C202: 'i': undefined identifier
+STC89C52RC_BASE_MAN.C(57): error C202: 'i': undefined identifier
+STC89C52RC_BASE_man.c - 2 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_MAN.C(58): warning C214: 'Argument': conversion: non-pointer to pointer
+STC89C52RC_BASE_man.c - 0 Error(s), 1 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=17.0 xdata=0 code=469
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+Program Size: data=17.0 xdata=0 code=469
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=17.0 xdata=0 code=469
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+Program Size: data=17.0 xdata=0 code=469
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=17.0 xdata=0 code=469
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+Program Size: data=17.0 xdata=0 code=469
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+compiling STC89C52RC_BASE_man.c...
+STC89C52RC_BASE_man.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=17.0 xdata=0 code=469
+creating hex file from "STC89C52RC_BASE"...
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling STC89C52RC_BASE_man.c...
+linking...
+Program Size: data=17.0 xdata=0 code=469
+creating hex file from "STC89C52RC_BASE"...
+"STC89C52RC_BASE" - 0 Error(s), 0 Warning(s).

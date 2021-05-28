@@ -12,14 +12,14 @@
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
         <TargetCommonOption>
-          <Device>STC89C52RC</Device>
+          <Device>STC90C52RC</Device>
           <Vendor>STC</Vendor>
           <Cpu>IRAM(0-0xFF) XRAM(0-0xFF) IROM(0-0x1FFF) CLOCK(45000000) MODP2</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
           <FlashDriverDll></FlashDriverDll>
-          <DeviceId>61442</DeviceId>
-          <RegisterFile>STC89C5xRC.H</RegisterFile>
+          <DeviceId>61474</DeviceId>
+          <RegisterFile>STC90C5xAD.H</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -43,7 +43,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>1602显示红外遥控编码</OutputName>
+          <OutputName>STC89C52RC_BASE</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -213,7 +213,7 @@
               <RCB>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0xffff</Size>
+                <Size>0x10000</Size>
               </RCB>
               <RXB>
                 <Type>0</Type>
@@ -352,9 +352,29 @@
               <FilePath>.\STARTUP.A51</FilePath>
             </File>
             <File>
-              <FileName>1602 LCD 显示红外遥控器编码.c</FileName>
+              <FileName>MCU_STC89C52RC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MCU_STC89C52RC.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCD1602display.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\LCD1602display.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>SoftTimer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\SoftTimer.h</FilePath>
+            </File>
+            <File>
+              <FileName>STC89C52RC_BASE_man.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\1602 LCD 显示红外遥控器编码.c</FilePath>
+              <FilePath>.\STC89C52RC_BASE_man.c</FilePath>
             </File>
           </Files>
         </Group>

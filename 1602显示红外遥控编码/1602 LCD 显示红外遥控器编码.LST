@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/11/2017 09:11:40 PAGE 1   
+C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/12/2017 10:52:28 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE 1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î
@@ -62,7 +62,7 @@ line level    source
   53          
   54          extern void ControlCar(uchar CarType);                //…˘√˜–°≥µøÿ÷∆◊”≥Ã–Ú
   55          
-C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/11/2017 09:11:40 PAGE 2   
+C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/12/2017 10:52:28 PAGE 2   
 
   56          void delayms(unsigned char x)                         //0.14mS—” ±≥Ã–Ú
   57          {
@@ -126,7 +126,7 @@ line level    source
  115          void ControlCar(unsigned char ConType)    //∂®“ÂµÁª˙øÿ÷∆◊”≥Ã–Ú
  116          {
  117   1       
-C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/11/2017 09:11:40 PAGE 3   
+C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/12/2017 10:52:28 PAGE 3   
 
  118   1        tingzhi();
  119   1       switch(ConType)                          //≈–∂œ”√ªß…Ë∂®µÁª˙–Œ Ω
@@ -178,7 +178,8 @@ line level    source
  165          void IR_IN() interrupt 2 using 0                      //∂®“ÂINT2Õ‚≤ø÷–∂œ∫Ø ˝
  166          {
  167   1        unsigned char j,k,N=0;                              //∂®“Â¡Ÿ ±Ω” ’±‰¡ø
- 168   1         
+ 168   1        DisplayListChar(0, 0, IRCOM);   
+*** WARNING C259 IN LINE 168 OF 1602 LCD œ‘ æ∫ÏÕ‚“£øÿ∆˜±‡¬Î.C: 'parameter': pointer: different mspace
  169   1        EX1 = 0;                                            //πÿ±’Õ‚≤ø÷–∂œ,∑¿÷π‘Ÿ”––≈∫≈µΩ¥Ô   
  170   1        delayms(15);                                        //—” ± ±º‰£¨Ω¯––∫ÏÕ‚œ˚∂∂
  171   1        if (IRIN==1)                                        //≈–∂œ∫ÏÕ‚–≈∫≈ «∑Òœ˚ ß
@@ -189,9 +190,9 @@ line level    source
  176   1                                 
  177   1        while (!IRIN)                                       //µ»IR±‰Œ™∏ﬂµÁ∆Ω£¨Ã¯π˝9msµƒ«∞µºµÕµÁ∆Ω–≈∫≈°£
  178   1        {
- 179   2            delayms(1);                                     //—” ±µ»¥˝
-C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/11/2017 09:11:40 PAGE 4   
+C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/12/2017 10:52:28 PAGE 4   
 
+ 179   2            delayms(1);                                     //—” ±µ»¥˝
  180   2        }
  181   1      
  182   1        for (j=0;j<4;j++)                                   //≤…ºØ∫ÏÕ‚“£øÿ∆˜ ˝æ›
@@ -253,9 +254,9 @@ line level    source
  237          {
  238   1       bit ExeFlag=0;                                       //∂®“Âø…÷¥––Œª±‰¡ø
  239   1       
- 240   1       LedFlash=3000;                                       //∂‘…¡µ∆ ˝æ›Ω¯––≥ı ºªØ
-C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/11/2017 09:11:40 PAGE 5   
+C51 COMPILER V9.01   1602_LCD_œ‘ æ∫ÏÕ_“£øÿ∆˜±‡_Î                                           10/12/2017 10:52:28 PAGE 5   
 
+ 240   1       LedFlash=3000;                                       //∂‘…¡µ∆ ˝æ›Ω¯––≥ı ºªØ
  241   1       EX1=1;                                               //Õ¨“‚ø™∆ÙÕ‚≤ø÷–∂œ1
  242   1       IT1=1;                                               //…Ë∂®Õ‚≤ø÷–∂œ1Œ™µÕ±ﬂ‘µ¥•∑¢¿‡–Õ
  243   1       EA=1;                                                //◊‹÷–∂œø™∆Ù
@@ -271,7 +272,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    673    ----
+   CODE SIZE        =    676    ----
    CONSTANT SIZE    =     20    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
@@ -281,4 +282,4 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

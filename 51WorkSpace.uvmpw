@@ -10,6 +10,12 @@
   <project>
     <PathAndName>.\1602显示红外遥控编码\1602显示红外遥控编码.uvproj</PathAndName>
     <NodeIsActive>1</NodeIsActive>
+    <NodeIsExpanded>1</NodeIsExpanded>
+  </project>
+
+  <project>
+    <PathAndName>.\小车\小车套餐三程序\11、ZYWIFI0939C超声波避障加红外避障程序（1602显示距离）\ZYWIFI0939C超声波避障程序（1602显示距离）.uvproj</PathAndName>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
 </ProjectWorkspace>

@@ -1,0 +1,351 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/12/2017  16:41:04  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, STC89C52RC_BASE_man.obj TO STC89C52RC_BASE RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  STC89C52RC_BASE_man.obj (STC89C52RC_BASE_MAN)
+
+
+LINK MAP OF MODULE:  STC89C52RC_BASE (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         _DATA_GROUP_
+            IDATA   0010H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     004CH     UNIT         ?PR?TESTLED?STC89C52RC_BASE_MAN
+            CODE    004FH     0040H     UNIT         ?PR?LCMINIT?STC89C52RC_BASE_MAN
+            CODE    008FH     0040H     UNIT         ?CO?STC89C52RC_BASE_MAN
+            CODE    00CFH     0039H     UNIT         ?PR?_DISPLAYLISTCHAR?STC89C52RC_BASE_MAN
+            CODE    0108H     0025H     UNIT         ?PR?_DELAY10US?STC89C52RC_BASE_MAN
+            CODE    012DH     0024H     UNIT         ?PR?_WRITECOMMANDLCM?STC89C52RC_BASE_MAN
+            CODE    0151H     0023H     UNIT         ?PR?READSTATUSLCM?STC89C52RC_BASE_MAN
+            CODE    0174H     001DH     UNIT         ?PR?_DISPLAYONECHAR?STC89C52RC_BASE_MAN
+            CODE    0191H     0019H     UNIT         ?PR?_DELAY1MS?STC89C52RC_BASE_MAN
+            CODE    01AAH     0014H     UNIT         ?PR?_WRITEDATALCM?STC89C52RC_BASE_MAN
+            CODE    01BEH     000CH     UNIT         ?C_C51STARTUP
+            CODE    01CAH     0008H     UNIT         ?PR?CMG88?STC89C52RC_BASE_MAN
+            CODE    01D2H     0003H     UNIT         ?PR?MAIN?STC89C52RC_BASE_MAN
+
+
+
+OVERLAY MAP OF MODULE:   STC89C52RC_BASE (?C_STARTUP)
+
+
+SEGMENT                                            DATA_GROUP 
+  +--> CALLED SEGMENT                            START    LENGTH
+----------------------------------------------------------------
+?C_C51STARTUP                                    -----    -----
+  +--> ?PR?MAIN?STC89C52RC_BASE_MAN
+
+?PR?MAIN?STC89C52RC_BASE_MAN                     -----    -----
+  +--> ?PR?TESTLED?STC89C52RC_BASE_MAN
+
+?PR?TESTLED?STC89C52RC_BASE_MAN                  0008H    0001H
+  +--> ?PR?CMG88?STC89C52RC_BASE_MAN
+  +--> ?PR?_DELAY1MS?STC89C52RC_BASE_MAN
+  +--> ?PR?LCMINIT?STC89C52RC_BASE_MAN
+  +--> ?CO?STC89C52RC_BASE_MAN
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/12/2017  16:41:04  PAGE 2
+
+
+  +--> ?PR?_DISPLAYLISTCHAR?STC89C52RC_BASE_MAN
+  +--> ?PR?_DISPLAYONECHAR?STC89C52RC_BASE_MAN
+
+?PR?LCMINIT?STC89C52RC_BASE_MAN                  -----    -----
+  +--> ?PR?_WRITECOMMANDLCM?STC89C52RC_BASE_MAN
+  +--> ?PR?_DELAY1MS?STC89C52RC_BASE_MAN
+
+?PR?_WRITECOMMANDLCM?STC89C52RC_BASE_MAN         000FH    0001H
+  +--> ?PR?_DELAY1MS?STC89C52RC_BASE_MAN
+  +--> ?PR?READSTATUSLCM?STC89C52RC_BASE_MAN
+  +--> ?PR?_DELAY10US?STC89C52RC_BASE_MAN
+
+?PR?READSTATUSLCM?STC89C52RC_BASE_MAN            -----    -----
+  +--> ?PR?_DELAY10US?STC89C52RC_BASE_MAN
+
+?PR?_DISPLAYLISTCHAR?STC89C52RC_BASE_MAN         0009H    0005H
+  +--> ?PR?_DISPLAYONECHAR?STC89C52RC_BASE_MAN
+
+?PR?_DISPLAYONECHAR?STC89C52RC_BASE_MAN          000EH    0001H
+  +--> ?PR?_WRITECOMMANDLCM?STC89C52RC_BASE_MAN
+  +--> ?PR?_WRITEDATALCM?STC89C52RC_BASE_MAN
+
+?PR?_WRITEDATALCM?STC89C52RC_BASE_MAN            000FH    0001H
+  +--> ?PR?READSTATUSLCM?STC89C52RC_BASE_MAN
+  +--> ?PR?_DELAY10US?STC89C52RC_BASE_MAN
+
+
+
+SYMBOL TABLE OF MODULE:  STC89C52RC_BASE (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:01BEH         SEGMENT       ?C_C51STARTUP
+  I:0010H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:01C1H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:01BEH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/12/2017  16:41:04  PAGE 3
+
+
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:01BEH         LINE#         133
+  C:01C0H         LINE#         134
+  C:01C1H         LINE#         135
+  C:01C2H         LINE#         136
+  C:01C4H         LINE#         185
+  C:01C7H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        STC89C52RC_BASE_MAN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0174H         PUBLIC        _DisplayOneChar
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  C:0191H         PUBLIC        _Delay1ms
+  C:00ADH         PUBLIC        table
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:01D2H         PUBLIC        main
+  C:01CAH         PUBLIC        cmg88
+  C:0139H         PUBLIC        _WriteCommandLCM
+  B:0090H.0       PUBLIC        P10
+  B:0090H.1       PUBLIC        P11
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:00A0H.5       PUBLIC        P25
+  B:00A0H.6       PUBLIC        P26
+  C:00BEH         PUBLIC        table1
+  C:011FH         PUBLIC        _Delay10us
+  C:0003H         PUBLIC        testLed
+  C:0151H         PUBLIC        ReadStatusLCM
+  D:00C8H         PUBLIC        T2CON
+  C:01AAH         PUBLIC        _WriteDataLCM
+  C:00A0H         PUBLIC        ASCII
+  C:008FH         PUBLIC        Range
+  C:004FH         PUBLIC        LCMInit
+  C:00CFH         PUBLIC        _DisplayListChar
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY1MS
+  D:0006H         SYMBOL        i
+  -------         DO            
+  D:0004H         SYMBOL        a
+  D:0005H         SYMBOL        b
+  -------         ENDDO         
+  C:0191H         LINE#         23
+  C:0191H         LINE#         24
+  C:0191H         LINE#         26
+  C:019AH         LINE#         27
+  C:019CH         LINE#         28
+  C:01A9H         LINE#         29
+  -------         ENDPROC       _DELAY1MS
+  C:0114H         SYMBOL        L?0042
+  -------         PROC          L?0041
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/12/2017  16:41:04  PAGE 4
+
+
+  -------         ENDPROC       L?0041
+  C:0114H         SYMBOL        L?0042
+  -------         PROC          _DELAY10US
+  D:0007H         SYMBOL        i
+  -------         DO            
+  D:0006H         SYMBOL        a
+  -------         ENDDO         
+  C:011FH         LINE#         38
+  C:011FH         LINE#         39
+  C:011FH         LINE#         41
+  C:0125H         LINE#         42
+  C:012CH         LINE#         43
+  -------         ENDPROC       _DELAY10US
+  -------         PROC          _WRITEDATALCM
+  D:000FH         SYMBOL        WDLCM
+  C:01AAH         LINE#         84
+  C:01ACH         LINE#         85
+  C:01ACH         LINE#         86
+  C:01AFH         LINE#         87
+  C:01B2H         LINE#         88
+  C:01B4H         LINE#         89
+  C:01B4H         LINE#         90
+  C:01B4H         LINE#         91
+  C:01B4H         LINE#         92
+  C:01B4H         LINE#         93
+  C:01B4H         LINE#         94
+  C:01B4H         LINE#         95
+  C:01B7H         LINE#         96
+  C:01B9H         LINE#         97
+  -------         ENDPROC       _WRITEDATALCM
+  C:0135H         SYMBOL        L?0044
+  -------         PROC          L?0043
+  -------         ENDPROC       L?0043
+  C:0135H         SYMBOL        L?0044
+  -------         PROC          _WRITECOMMANDLCM
+  D:000FH         SYMBOL        WCLCM
+  D:0004H         SYMBOL        BuysC
+  C:0139H         LINE#         101
+  C:013BH         LINE#         102
+  C:013BH         LINE#         103
+  C:0142H         LINE#         104
+  C:0145H         LINE#         105
+  C:0147H         LINE#         106
+  C:0147H         LINE#         107
+  C:0147H         LINE#         108
+  C:0147H         LINE#         109
+  C:0147H         LINE#         110
+  C:0147H         LINE#         111
+  C:0147H         LINE#         112
+  C:014AH         LINE#         113
+  C:014CH         LINE#         114
+  -------         ENDPROC       _WRITECOMMANDLCM
+  -------         PROC          READSTATUSLCM
+  C:0151H         LINE#         128
+  C:0151H         LINE#         129
+  C:0151H         LINE#         130
+  C:0154H         LINE#         131
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/12/2017  16:41:04  PAGE 5
+
+
+  C:0156H         LINE#         132
+  C:015BH         LINE#         133
+  C:015DH         LINE#         134
+  C:0162H         LINE#         135
+  C:0162H         LINE#         136
+  C:0162H         LINE#         137
+  C:0162H         LINE#         138
+  C:0162H         LINE#         139
+  C:0165H         LINE#         140
+  C:0167H         LINE#         141
+  C:016CH         LINE#         142
+  C:016CH         LINE#         143
+  C:0171H         LINE#         144
+  C:0173H         LINE#         145
+  -------         ENDPROC       READSTATUSLCM
+  -------         PROC          LCMINIT
+  C:004FH         LINE#         148
+  C:004FH         LINE#         149
+  C:004FH         LINE#         150
+  C:0052H         LINE#         151
+  C:0055H         LINE#         152
+  C:0055H         LINE#         153
+  C:0058H         LINE#         154
+  C:0058H         LINE#         155
+  C:005BH         LINE#         156
+  C:0062H         LINE#         158
+  C:006BH         LINE#         159
+  C:0074H         LINE#         160
+  C:007DH         LINE#         161
+  C:0086H         LINE#         162
+  -------         ENDPROC       LCMINIT
+  -------         PROC          _DISPLAYONECHAR
+  D:0007H         SYMBOL        X
+  D:0005H         SYMBOL        Y
+  D:000EH         SYMBOL        DData
+  C:0174H         LINE#         166
+  C:0176H         LINE#         167
+  C:0176H         LINE#         168
+  C:0179H         LINE#         169
+  C:017CH         LINE#         170
+  C:0182H         LINE#         171
+  C:0185H         LINE#         172
+  C:018CH         LINE#         173
+  -------         ENDPROC       _DISPLAYONECHAR
+  -------         PROC          _DISPLAYLISTCHAR
+  D:0009H         SYMBOL        X
+  D:000AH         SYMBOL        Y
+  D:000BH         SYMBOL        DData
+  -------         DO            
+  D:000DH         SYMBOL        ListLength
+  -------         ENDDO         
+  C:00CFH         LINE#         177
+  C:00D7H         LINE#         178
+  C:00D7H         LINE#         181
+  C:00DAH         LINE#         182
+  C:00DDH         LINE#         183
+  C:00E0H         LINE#         184
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/12/2017  16:41:04  PAGE 6
+
+
+  C:00F3H         LINE#         185
+  C:00F3H         LINE#         186
+  C:00FAH         LINE#         187
+  C:00FAH         LINE#         188
+  C:0101H         LINE#         189
+  C:0103H         LINE#         190
+  C:0105H         LINE#         191
+  C:0105H         LINE#         192
+  C:0107H         LINE#         193
+  -------         ENDPROC       _DISPLAYLISTCHAR
+  -------         PROC          CMG88
+  C:01CAH         LINE#         31
+  C:01CAH         LINE#         32
+  C:01CAH         LINE#         33
+  C:01CCH         LINE#         34
+  C:01CFH         LINE#         35
+  C:01D1H         LINE#         36
+  -------         ENDPROC       CMG88
+  -------         PROC          TESTLED
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         39
+  C:0003H         LINE#         40
+  C:0003H         LINE#         43
+  C:0006H         LINE#         44
+  C:000DH         LINE#         45
+  C:0010H         LINE#         46
+  C:0017H         LINE#         48
+  C:0021H         LINE#         49
+  C:002CH         LINE#         51
+  C:002CH         LINE#         52
+  C:002CH         LINE#         54
+  C:002FH         LINE#         55
+  C:002FH         LINE#         56
+  C:0036H         LINE#         57
+  C:0044H         LINE#         58
+  -------         ENDPROC       TESTLED
+  -------         PROC          MAIN
+  C:01D2H         LINE#         64
+  C:01D2H         LINE#         65
+  C:01D2H         LINE#         66
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        STC89C52RC_BASE_MAN
+
+Program Size: data=17.0 xdata=0 code=469
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
